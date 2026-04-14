@@ -31,6 +31,6 @@ jobs:
       - name: Build Next.js
         run: npm run build
         env:
-          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
-          NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
+          NEXT_PUBLIC_SUPABASE_URL: https://dthytvsydcbznqlittln.supabase.co
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR0aHl0dnN5ZGNiem5xbGl0dGxuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ1ODYxMDMsImV4cCI6MjA2MDE2MjEwM30.a8Y5IQXM9cKX6vT5fI3Q8zjJF8gFx_M7rGS6kNtV4qE
+          NEXT_PUBLIC_API_URL: https://contentai-backend-production-634e.up.railway.app
