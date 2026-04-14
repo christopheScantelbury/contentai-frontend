@@ -1,2 +1,2 @@
 # contentai-frontend
-Frontend do ContentAI — Next.js + Tailwind + Supabase Auth
+Frontend do ContentAI â Next.js + Tailwind + Supabase Auth
