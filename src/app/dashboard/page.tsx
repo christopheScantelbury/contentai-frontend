@@ -14,5 +14,11 @@ export default async function DashboardPage() {
 
   const token = (await supabase.auth.getSession()).data.session?.access_token ?? '';
 
-  return <DashboardClient token={token} userEmail={user.email ?? ''} />;
+  return (
+    <DashboardClient
+      token={token}
+      userEmail={user.email ?? ''}
+      userId={user.id}
+    />
+  );
 }
