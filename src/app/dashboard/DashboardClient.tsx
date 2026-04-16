@@ -3,28 +3,31 @@
 import { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import ProductForm, { type ProductFormHandle } from '@/components/ProductForm';
-import ResultPanel   from '@/components/ResultPanel';
-import UsagePanel    from '@/components/UsagePanel';
-import HistoryPanel  from '@/components/HistoryPanel';
+import ResultPanel        from '@/components/ResultPanel';
+import UsagePanel         from '@/components/UsagePanel';
+import HistoryPanel       from '@/components/HistoryPanel';
+import OnboardingWizard   from '@/components/OnboardingWizard';
 import { createClient } from '@/lib/supabase';
 import type { GenerateResult } from '@/lib/api';
 
 type Tab = 'gerar' | 'historico';
 
 interface Props {
-  token:     string;
-  userEmail: string;
-  userId:    string;
+  token:              string;
+  userEmail:          string;
+  userId:             string;
+  showOnboarding:     boolean;
 }
 
-export default function DashboardClient({ token, userEmail, userId }: Props) {
+export default function DashboardClient({ token, userEmail, userId, showOnboarding }: Props) {
   const router    = useRouter();
   const formRef   = useRef<ProductFormHandle>(null);
 
-  const [tab,          setTab]          = useState<Tab>('gerar');
-  const [result,       setResult]       = useState<GenerateResult | null>(null);
-  const [isLoading,    setIsLoading]    = useState(false);
-  const [generationId, setGenerationId] = useState<string | null>(null);
+  const [tab,             setTab]             = useState<Tab>('gerar');
+  const [result,          setResult]          = useState<GenerateResult | null>(null);
+  const [isLoading,       setIsLoading]       = useState(false);
+  const [generationId,    setGenerationId]    = useState<string | null>(null);
+  const [wizardVisible,   setWizardVisible]   = useState(showOnboarding);
 
   async function handleLogout() {
     const supabase = createClient();
@@ -61,6 +64,12 @@ export default function DashboardClient({ token, userEmail, userId }: Props) {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {wizardVisible && (
+        <OnboardingWizard
+          token={token}
+          onComplete={() => setWizardVisible(false)}
+        />
+      )}
       {/* Header */}
       <header className="border-b border-gray-200 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
