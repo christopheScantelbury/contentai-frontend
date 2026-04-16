@@ -1,16 +1,18 @@
 'use client';
 
+import { useState } from 'react';
+import StarRating from '@/components/StarRating';
 import type { GenerateResult } from '@/lib/api';
 
 interface Props {
-  result:    GenerateResult | null;
-  isLoading: boolean;
+  result:       GenerateResult | null;
+  isLoading:    boolean;
+  generationId: string | null;
+  token:        string;
 }
 
 function SkeletonLine({ width = 'w-full' }: { width?: string }) {
-  return (
-    <div className={`h-3 animate-pulse rounded bg-gray-200 ${width}`} />
-  );
+  return <div className={`h-3 animate-pulse rounded bg-gray-200 ${width}`} />;
 }
 
 function Skeleton() {
@@ -37,11 +39,15 @@ function Skeleton() {
 }
 
 function CopyButton({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false);
+
   async function handleCopy() {
     try {
       await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
     } catch {
-      // fallback: ignore
+      // ignore
     }
   }
 
@@ -50,17 +56,25 @@ function CopyButton({ text }: { text: string }) {
       type="button"
       onClick={handleCopy}
       className="rounded p-1 text-gray-400 hover:text-indigo-600"
-      title="Copiar"
+      title={copied ? 'Copiado!' : 'Copiar'}
     >
-      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-          d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-      </svg>
+      {copied ? (
+        <svg className="h-4 w-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+        </svg>
+      ) : (
+        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
+            d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+        </svg>
+      )}
     </button>
   );
 }
 
-export default function ResultPanel({ result, isLoading }: Props) {
+export default function ResultPanel({ result, isLoading, generationId, token }: Props) {
+  const [ratingDone, setRatingDone] = useState(false);
+
   if (isLoading) {
     return (
       <div className="rounded-xl border border-gray-200 bg-white p-6">
@@ -83,59 +97,71 @@ export default function ResultPanel({ result, isLoading }: Props) {
   }
 
   return (
-    <div className="rounded-xl border border-gray-200 bg-white p-6 space-y-5">
-      {/* Título */}
-      <section>
-        <div className="mb-1 flex items-center justify-between">
-          <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-400">Título</h3>
-          <CopyButton text={result.title} />
-        </div>
-        <p className="text-base font-semibold text-gray-900">{result.title}</p>
-      </section>
-
-      {/* Descrição curta */}
-      <section>
-        <div className="mb-1 flex items-center justify-between">
-          <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-400">Descrição curta</h3>
-          <CopyButton text={result.shortDescription} />
-        </div>
-        <p className="text-sm text-gray-700">{result.shortDescription}</p>
-      </section>
-
-      {/* Descrição longa */}
-      <section>
-        <div className="mb-1 flex items-center justify-between">
-          <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-400">Descrição completa</h3>
-          <CopyButton text={result.longDescription} />
-        </div>
-        <p className="whitespace-pre-wrap text-sm text-gray-700">{result.longDescription}</p>
-      </section>
-
-      {/* Bullets */}
-      {result.bullets?.length > 0 && (
+    <div className="space-y-4">
+      {/* Resultado */}
+      <div className="rounded-xl border border-gray-200 bg-white p-6 space-y-5">
+        {/* Título */}
         <section>
-          <div className="mb-2 flex items-center justify-between">
-            <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-400">Pontos de venda</h3>
-            <CopyButton text={result.bullets.join('\n')} />
+          <div className="mb-1 flex items-center justify-between">
+            <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-400">Título</h3>
+            <CopyButton text={result.title} />
           </div>
-          <ul className="space-y-1">
-            {result.bullets.map((b, i) => (
-              <li key={i} className="flex gap-2 text-sm text-gray-700">
-                <span className="mt-0.5 text-indigo-500">•</span>
-                {b}
-              </li>
-            ))}
-          </ul>
+          <p className="text-base font-semibold text-gray-900">{result.title}</p>
         </section>
-      )}
 
-      {/* Meta */}
-      {(result.tokensUsed || result.generationTimeMs) && (
-        <p className="text-right text-xs text-gray-400">
-          {result.tokensUsed ? `${result.tokensUsed} tokens` : ''}
-          {result.tokensUsed && result.generationTimeMs ? ' · ' : ''}
-          {result.generationTimeMs ? `${(result.generationTimeMs / 1000).toFixed(1)}s` : ''}
-        </p>
+        {/* Descrição curta */}
+        <section>
+          <div className="mb-1 flex items-center justify-between">
+            <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-400">Descrição curta</h3>
+            <CopyButton text={result.shortDescription} />
+          </div>
+          <p className="text-sm text-gray-700">{result.shortDescription}</p>
+        </section>
+
+        {/* Descrição longa */}
+        <section>
+          <div className="mb-1 flex items-center justify-between">
+            <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-400">Descrição completa</h3>
+            <CopyButton text={result.longDescription} />
+          </div>
+          <p className="whitespace-pre-wrap text-sm text-gray-700">{result.longDescription}</p>
+        </section>
+
+        {/* Bullets */}
+        {result.bullets?.length > 0 && (
+          <section>
+            <div className="mb-2 flex items-center justify-between">
+              <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-400">Pontos de venda</h3>
+              <CopyButton text={result.bullets.join('\n')} />
+            </div>
+            <ul className="space-y-1">
+              {result.bullets.map((b, i) => (
+                <li key={i} className="flex gap-2 text-sm text-gray-700">
+                  <span className="mt-0.5 text-indigo-500">•</span>
+                  {b}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {/* Meta */}
+        {(result.tokensUsed || result.generationTimeMs) && (
+          <p className="text-right text-xs text-gray-400">
+            {result.tokensUsed ? `${result.tokensUsed} tokens` : ''}
+            {result.tokensUsed && result.generationTimeMs ? ' · ' : ''}
+            {result.generationTimeMs ? `${(result.generationTimeMs / 1000).toFixed(1)}s` : ''}
+          </p>
+        )}
+      </div>
+
+      {/* Stars rating — não bloqueante */}
+      {!ratingDone && generationId && (
+        <StarRating
+          generationId={generationId}
+          token={token}
+          onDone={() => setRatingDone(true)}
+        />
       )}
     </div>
   );
