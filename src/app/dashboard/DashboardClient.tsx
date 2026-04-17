@@ -16,14 +16,36 @@ interface Props {
 
 export default function DashboardClient({ token, userEmail, userId }: Props) {
   const router    = useRouter();
-  const [result,    setResult]    = useState<GenerateResult | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [result,       setResult]       = useState<GenerateResult | null>(null);
+  const [isLoading,    setIsLoading]    = useState(false);
+  const [generationId, setGenerationId] = useState<string | null>(null);
 
   async function handleLogout() {
     const supabase = createClient();
     await supabase.auth.signOut();
     router.push('/login');
     router.refresh();
+  }
+
+  /** Após receber o resultado, busca o ID da última geração no Supabase */
+  async function handleResult(res: GenerateResult) {
+    setResult(res);
+    setGenerationId(null); // reseta enquanto busca
+
+    try {
+      const supabase = createClient();
+      const { data } = await supabase
+        .from('generations')
+        .select('id')
+        .eq('user_id', userId)
+        .order('created_at', { ascending: false })
+        .limit(1)
+        .single();
+
+      if (data?.id) setGenerationId(data.id as string);
+    } catch {
+      // sem generation_id — rating simplesmente não aparece
+    }
   }
 
   return (
@@ -62,17 +84,22 @@ export default function DashboardClient({ token, userEmail, userId }: Props) {
             </h2>
             <ProductForm
               token={token}
-              onResult={setResult}
+              onResult={handleResult}
               onLoading={setIsLoading}
             />
           </div>
 
-          {/* Coluna 3 — resultado */}
+          {/* Coluna 3 — resultado + rating */}
           <div>
             <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-400">
               Resultado
             </h2>
-            <ResultPanel result={result} isLoading={isLoading} />
+            <ResultPanel
+              result={result}
+              isLoading={isLoading}
+              generationId={generationId}
+              token={token}
+            />
           </div>
         </div>
       </main>
