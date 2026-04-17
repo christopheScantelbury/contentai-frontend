@@ -14,11 +14,15 @@ export default async function DashboardPage() {
 
   const token = (await supabase.auth.getSession()).data.session?.access_token ?? '';
 
+  // Show onboarding wizard for first-time users
+  const onboardingCompleted = user.user_metadata?.onboarding_completed === true;
+
   return (
     <DashboardClient
       token={token}
       userEmail={user.email ?? ''}
       userId={user.id}
+      showOnboarding={!onboardingCompleted}
     />
   );
 }
