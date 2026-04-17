@@ -3,9 +3,9 @@ import './globals.css';
 import Providers from '@/components/Providers';
 
 export const metadata: Metadata = {
-  title: 'ContentAI — Gerador de conteúdo para produtos',
+  title: 'Descrição AI — Gerador de conteúdo para produtos',
   description:
-    'Gere títulos, descrições e bullets de venda para seus produtos com inteligência artificial.',
+    'Gere títulos, descrições e bullets de venda para seus produtos com inteligência artificial. Desenvolvido pela ScantelburyDevs.',
 };
 
 export default function RootLayout({

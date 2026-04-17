@@ -1,22 +1,23 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { ScantelburyLogoMark, ScantelburyLogoFull } from '@/components/ScantelburyLogo';
 
 export const metadata: Metadata = {
-  title: 'ContentAI — Descrições de produtos geradas por IA em segundos',
+  title: 'Descrição AI — Descrições de produtos geradas por IA em segundos',
   description:
     'Gere títulos, descrições curtas, longas e pontos de venda para qualquer produto com inteligência artificial. Economize horas de trabalho toda semana.',
   openGraph: {
-    title: 'ContentAI — Descrições de produtos geradas por IA',
+    title: 'Descrição AI — Descrições de produtos geradas por IA',
     description:
       'Gere conteúdo de produto profissional em segundos. Hero, bullets e SEO prontos para copiar.',
-    url: 'https://contentai.vercel.app',
-    siteName: 'ContentAI',
+    url: 'https://descricaoai.com.br',
+    siteName: 'Descrição AI',
     images: [
       {
-        url: 'https://contentai.vercel.app/og-image.png',
+        url: 'https://descricaoai.com.br/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'ContentAI — Gerador de conteúdo com IA',
+        alt: 'Descrição AI — Gerador de conteúdo com IA',
       },
     ],
     locale: 'pt_BR',
@@ -24,9 +25,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ContentAI — Descrições de produtos com IA',
+    title: 'Descrição AI — Descrições de produtos com IA',
     description: 'Gere conteúdo de produto profissional em segundos.',
-    images: ['https://contentai.vercel.app/og-image.png'],
+    images: ['https://descricaoai.com.br/og-image.png'],
   },
 };
 
@@ -112,21 +113,21 @@ function NavBar() {
   return (
     <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <span className="text-lg font-bold text-indigo-600">ContentAI</span>
+        <span className="text-lg font-bold text-brand">Descrição AI</span>
         <nav className="hidden items-center gap-6 text-sm font-medium text-gray-600 sm:flex">
-          <a href="#como-funciona" className="hover:text-indigo-600">Como funciona</a>
-          <a href="#planos" className="hover:text-indigo-600">Planos</a>
+          <a href="#como-funciona" className="hover:text-brand">Como funciona</a>
+          <a href="#planos" className="hover:text-brand">Planos</a>
         </nav>
         <div className="flex items-center gap-3">
           <Link
             href="/login"
-            className="rounded-lg px-3 py-1.5 text-sm font-medium text-gray-700 hover:text-indigo-600"
+            className="rounded-lg px-3 py-1.5 text-sm font-medium text-gray-700 hover:text-brand"
           >
             Entrar
           </Link>
           <Link
             href="/register"
-            className="rounded-lg bg-indigo-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-indigo-700"
+            className="rounded-lg bg-brand px-4 py-1.5 text-sm font-semibold text-white hover:bg-brand-dark"
           >
             Começar grátis
           </Link>
@@ -138,14 +139,20 @@ function NavBar() {
 
 function Hero() {
   return (
-    <section className="bg-gradient-to-b from-indigo-50 to-white px-4 py-20 text-center">
+    <section className="bg-gradient-to-b from-brand/5 to-white px-4 py-20 text-center">
       <div className="mx-auto max-w-3xl">
-        <span className="mb-4 inline-block rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-indigo-700">
-          Powered by Claude AI
-        </span>
+        <a
+          href="https://scantelburydevs.com.br"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mb-4 inline-flex items-center gap-2 rounded-full border border-brand/30 bg-brand/10 px-3 py-1 text-xs font-semibold tracking-wide text-brand transition hover:bg-brand/20"
+        >
+          <ScantelburyLogoMark size={14} />
+          Desenvolvido pela ScantelburyDevs
+        </a>
         <h1 className="mb-5 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
           Descrições de produtos{' '}
-          <span className="text-indigo-600">irresistíveis</span>,<br />
+          <span className="text-brand">irresistíveis</span>,<br />
           em segundos
         </h1>
         <p className="mx-auto mb-8 max-w-xl text-lg text-gray-600">
@@ -155,13 +162,13 @@ function Hero() {
         <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
           <Link
             href="/register"
-            className="w-full rounded-xl bg-indigo-600 px-8 py-3.5 text-base font-bold text-white shadow hover:bg-indigo-700 sm:w-auto"
+            className="w-full rounded-xl bg-brand px-8 py-3.5 text-base font-bold text-white shadow hover:bg-brand-dark sm:w-auto"
           >
             Começar grátis — 10 gerações/mês
           </Link>
           <a
             href="#como-funciona"
-            className="text-sm font-medium text-indigo-600 hover:underline"
+            className="text-sm font-medium text-brand hover:underline"
           >
             Ver como funciona ↓
           </a>
@@ -198,7 +205,7 @@ function HowItWorks() {
         <div className="grid gap-8 sm:grid-cols-3">
           {steps.map((step) => (
             <div key={step.num} className="flex flex-col items-center text-center">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-indigo-100 text-xl font-bold text-indigo-600">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand/15 text-xl font-bold text-brand">
                 {step.num}
               </div>
               <h3 className="mb-2 text-base font-semibold text-gray-900">{step.title}</h3>
@@ -241,7 +248,7 @@ function BeforeAfter() {
           <div className="rounded-2xl border border-green-100 bg-white p-6">
             <div className="mb-3 flex items-center gap-2">
               <span className="rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-semibold text-green-600">
-                Depois — ContentAI
+                Depois — Descrição AI
               </span>
             </div>
             <p className="mb-2 text-base font-semibold text-gray-900">
@@ -253,7 +260,7 @@ function BeforeAfter() {
             <ul className="space-y-1">
               {BEFORE_AFTER.after.bullets.map((b, i) => (
                 <li key={i} className="flex gap-2 text-sm text-gray-700">
-                  <span className="mt-0.5 text-indigo-500">•</span>
+                  <span className="mt-0.5 text-brand">•</span>
                   {b}
                 </li>
               ))}
@@ -279,7 +286,7 @@ function Pricing() {
               key={plan.name}
               className={`relative flex flex-col rounded-2xl border p-6 ${
                 plan.highlight
-                  ? 'border-indigo-500 bg-indigo-600 text-white shadow-xl shadow-indigo-200'
+                  ? 'border-brand bg-brand text-white shadow-xl shadow-brand/20'
                   : 'border-gray-200 bg-white text-gray-900'
               }`}
             >
@@ -289,16 +296,16 @@ function Pricing() {
                 </span>
               )}
               <div className="mb-4">
-                <p className={`text-xs font-semibold uppercase tracking-wide ${plan.highlight ? 'text-indigo-200' : 'text-gray-500'}`}>
+                <p className={`text-xs font-semibold uppercase tracking-wide ${plan.highlight ? 'text-brand/70' : 'text-gray-500'}`}>
                   {plan.name}
                 </p>
                 <div className="mt-1 flex items-end gap-1">
                   <span className="text-3xl font-extrabold">{plan.price}</span>
-                  <span className={`mb-1 text-sm ${plan.highlight ? 'text-indigo-200' : 'text-gray-500'}`}>
+                  <span className={`mb-1 text-sm ${plan.highlight ? 'text-brand/70' : 'text-gray-500'}`}>
                     {plan.period}
                   </span>
                 </div>
-                <p className={`mt-1 text-sm ${plan.highlight ? 'text-indigo-100' : 'text-gray-600'}`}>
+                <p className={`mt-1 text-sm ${plan.highlight ? 'text-brand/50' : 'text-gray-600'}`}>
                   {plan.description}
                 </p>
               </div>
@@ -307,7 +314,7 @@ function Pricing() {
                 {plan.features.map((f) => (
                   <li key={f} className="flex items-start gap-2 text-sm">
                     <svg
-                      className={`mt-0.5 h-4 w-4 shrink-0 ${plan.highlight ? 'text-indigo-200' : 'text-indigo-500'}`}
+                      className={`mt-0.5 h-4 w-4 shrink-0 ${plan.highlight ? 'text-brand/70' : 'text-brand'}`}
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -323,8 +330,8 @@ function Pricing() {
                 href={plan.href}
                 className={`block w-full rounded-xl py-2.5 text-center text-sm font-bold transition ${
                   plan.highlight
-                    ? 'bg-white text-indigo-600 hover:bg-indigo-50'
-                    : 'bg-indigo-600 text-white hover:bg-indigo-700'
+                    ? 'bg-white text-brand hover:bg-brand/10'
+                    : 'bg-brand text-white hover:bg-brand-dark'
                 }`}
               >
                 {plan.cta}
@@ -339,21 +346,21 @@ function Pricing() {
 
 function CtaBanner() {
   return (
-    <section className="bg-indigo-600 px-4 py-16 text-center">
+    <section className="bg-brand px-4 py-16 text-center">
       <div className="mx-auto max-w-2xl">
         <h2 className="mb-4 text-3xl font-bold text-white">
           Pronto para economizar horas toda semana?
         </h2>
-        <p className="mb-8 text-indigo-200">
-          Junte-se a centenas de lojistas que já automatizaram a criação de conteúdo com ContentAI.
+        <p className="mb-8 text-brand/70">
+          Junte-se a centenas de lojistas que já automatizaram a criação de conteúdo com Descrição AI.
         </p>
         <Link
           href="/register"
-          className="inline-block rounded-xl bg-white px-8 py-3.5 text-base font-bold text-indigo-600 shadow hover:bg-indigo-50"
+          className="inline-block rounded-xl bg-white px-8 py-3.5 text-base font-bold text-brand shadow hover:bg-brand/10"
         >
           Começar grátis agora
         </Link>
-        <p className="mt-3 text-xs text-indigo-300">Sem cartão de crédito. 10 gerações grátis por mês.</p>
+        <p className="mt-3 text-xs text-brand/60">Sem cartão de crédito. 10 gerações grátis por mês.</p>
       </div>
     </section>
   );
@@ -363,13 +370,24 @@ function Footer() {
   return (
     <footer className="border-t border-gray-100 bg-white px-4 py-8">
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 text-sm text-gray-500 sm:flex-row">
-        <span className="font-bold text-gray-700">ContentAI</span>
+        <span className="font-bold text-gray-700">Descrição AI</span>
         <nav className="flex gap-5">
-          <a href="#planos" className="hover:text-indigo-600">Planos</a>
-          <a href="#como-funciona" className="hover:text-indigo-600">Como funciona</a>
-          <Link href="/login" className="hover:text-indigo-600">Entrar</Link>
+          <a href="#planos" className="hover:text-brand">Planos</a>
+          <a href="#como-funciona" className="hover:text-brand">Como funciona</a>
+          <Link href="/login" className="hover:text-brand">Entrar</Link>
         </nav>
-        <p>© {new Date().getFullYear()} ContentAI. Todos os direitos reservados.</p>
+        <div className="flex flex-col items-center gap-1 sm:items-end">
+          <p>© {new Date().getFullYear()} Descrição AI. Todos os direitos reservados.</p>
+          <a
+            href="https://scantelburydevs.com.br"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-xs text-gray-400 hover:text-brand transition-colors"
+          >
+            Desenvolvido por
+            <ScantelburyLogoFull size="sm" className="[&_span]:!text-gray-600 [&_span_.text-brand]:!text-brand" />
+          </a>
+        </div>
       </div>
     </footer>
   );

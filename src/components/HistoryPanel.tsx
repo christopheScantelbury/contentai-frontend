@@ -142,7 +142,7 @@ export default function HistoryPanel({ userId, onReuse }: Props) {
                     <ul className="mt-1 space-y-0.5">
                       {row.result.bullets.map((b, i) => (
                         <li key={i} className="flex gap-2 text-xs text-gray-600">
-                          <span className="text-indigo-400">•</span>{b}
+                          <span className="text-brand">•</span>{b}
                         </li>
                       ))}
                     </ul>
@@ -154,7 +154,7 @@ export default function HistoryPanel({ userId, onReuse }: Props) {
                   <button
                     type="button"
                     onClick={() => onReuse({ name: row.product_name, category: row.category, features: row.features })}
-                    className="inline-flex items-center gap-1.5 rounded-lg border border-indigo-300 px-3 py-1.5 text-xs font-semibold text-indigo-600 hover:bg-indigo-50"
+                    className="inline-flex items-center gap-1.5 rounded-lg border border-brand/50 px-3 py-1.5 text-xs font-semibold text-brand hover:bg-brand/10"
                   >
                     <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}

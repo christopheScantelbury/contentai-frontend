@@ -73,7 +73,7 @@ export default function DashboardClient({ token, userEmail, userId, showOnboardi
       {/* Header */}
       <header className="border-b border-gray-200 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-          <span className="text-lg font-bold text-indigo-600">ContentAI</span>
+          <span className="text-lg font-bold text-brand">Descrição AI</span>
           <nav className="hidden gap-1 sm:flex">
             {(['gerar', 'historico'] as Tab[]).map((t) => (
               <button
@@ -81,7 +81,7 @@ export default function DashboardClient({ token, userEmail, userId, showOnboardi
                 onClick={() => setTab(t)}
                 className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
                   tab === t
-                    ? 'bg-indigo-50 text-indigo-600'
+                    ? 'bg-brand/10 text-brand'
                     : 'text-gray-600 hover:bg-gray-100'
                 }`}
               >

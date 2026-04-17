@@ -55,7 +55,7 @@ function CopyButton({ text }: { text: string }) {
     <button
       type="button"
       onClick={handleCopy}
-      className="rounded p-1 text-gray-400 hover:text-indigo-600"
+      className="rounded p-1 text-gray-400 hover:text-brand"
       title={copied ? 'Copiado!' : 'Copiar'}
     >
       {copied ? (
@@ -137,7 +137,7 @@ export default function ResultPanel({ result, isLoading, generationId, token }: 
             <ul className="space-y-1">
               {result.bullets.map((b, i) => (
                 <li key={i} className="flex gap-2 text-sm text-gray-700">
-                  <span className="mt-0.5 text-indigo-500">•</span>
+                  <span className="mt-0.5 text-brand">•</span>
                   {b}
                 </li>
               ))}

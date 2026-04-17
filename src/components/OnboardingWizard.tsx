@@ -46,9 +46,9 @@ function Steps({ current }: { current: 1 | 2 | 3 }) {
             <div
               className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold transition-colors ${
                 s.n < current
-                  ? 'bg-indigo-600 text-white'
+                  ? 'bg-brand text-white'
                   : s.n === current
-                  ? 'bg-indigo-600 text-white ring-4 ring-indigo-100'
+                  ? 'bg-brand text-white ring-4 ring-brand/20'
                   : 'bg-gray-200 text-gray-500'
               }`}
             >
@@ -60,12 +60,12 @@ function Steps({ current }: { current: 1 | 2 | 3 }) {
                 s.n
               )}
             </div>
-            <span className={`mt-1 text-xs ${s.n === current ? 'font-semibold text-indigo-600' : 'text-gray-400'}`}>
+            <span className={`mt-1 text-xs ${s.n === current ? 'font-semibold text-brand' : 'text-gray-400'}`}>
               {s.label}
             </span>
           </div>
           {i < steps.length - 1 && (
-            <div className={`mb-4 h-0.5 w-12 sm:w-20 ${s.n < current ? 'bg-indigo-600' : 'bg-gray-200'}`} />
+            <div className={`mb-4 h-0.5 w-12 sm:w-20 ${s.n < current ? 'bg-brand' : 'bg-gray-200'}`} />
           )}
         </div>
       ))}
@@ -107,7 +107,7 @@ function StepForm({ token, onGenerated }: { token: string; onGenerated: (r: Gene
           type="text"
           placeholder="Ex: Tênis Running Pro 3000"
           {...register('name')}
-          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand"
         />
         {errors.name && <p className="mt-1 text-xs text-red-600">{errors.name.message}</p>}
       </div>
@@ -119,7 +119,7 @@ function StepForm({ token, onGenerated }: { token: string; onGenerated: (r: Gene
         <select
           id="ob-category"
           {...register('category')}
-          className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+          className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand"
         >
           <option value="">Selecione…</option>
           {CATEGORIES.map((c) => (
@@ -138,7 +138,7 @@ function StepForm({ token, onGenerated }: { token: string; onGenerated: (r: Gene
           rows={3}
           placeholder="Material, cor, tamanho, diferenciais…"
           {...register('features')}
-          className="w-full resize-none rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+          className="w-full resize-none rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand"
         />
         {errors.features && <p className="mt-1 text-xs text-red-600">{errors.features.message}</p>}
       </div>
@@ -150,7 +150,7 @@ function StepForm({ token, onGenerated }: { token: string; onGenerated: (r: Gene
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-bold text-white hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-60"
+        className="w-full rounded-xl bg-brand px-4 py-2.5 text-sm font-bold text-white hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-60"
       >
         {isSubmitting ? (
           <span className="flex items-center justify-center gap-2">
@@ -183,7 +183,7 @@ function CopyBtn({ text }: { text: string }) {
     <button
       type="button"
       onClick={handleCopy}
-      className="ml-2 rounded p-1 text-gray-400 hover:text-indigo-600"
+      className="ml-2 rounded p-1 text-gray-400 hover:text-brand"
       title="Copiar"
     >
       {copied ? (
@@ -236,7 +236,7 @@ function StepResult({ result, onNext }: { result: GenerateResult; onNext: () => 
           <ul className="space-y-1">
             {result.bullets.slice(0, 3).map((b, i) => (
               <li key={i} className="flex gap-2 text-sm text-gray-700">
-                <span className="mt-0.5 text-indigo-500">•</span>
+                <span className="mt-0.5 text-brand">•</span>
                 {b}
               </li>
             ))}
@@ -247,7 +247,7 @@ function StepResult({ result, onNext }: { result: GenerateResult; onNext: () => 
       <button
         type="button"
         onClick={onNext}
-        className="w-full rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-bold text-white hover:bg-indigo-700"
+        className="w-full rounded-xl bg-brand px-4 py-2.5 text-sm font-bold text-white hover:bg-brand-dark"
       >
         Continuar →
       </button>
@@ -289,8 +289,8 @@ function StepDone({ onComplete }: { onComplete: () => void }) {
           'Clique em "Gerar conteúdo" e aguarde',
           'Copie cada campo com um clique',
         ].map((tip, i) => (
-          <li key={i} className="flex items-start gap-2 rounded-lg bg-indigo-50 px-3 py-2 text-sm text-indigo-800">
-            <svg className="mt-0.5 h-4 w-4 shrink-0 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <li key={i} className="flex items-start gap-2 rounded-lg bg-brand/10 px-3 py-2 text-sm text-navy">
+            <svg className="mt-0.5 h-4 w-4 shrink-0 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
             {tip}
@@ -301,7 +301,7 @@ function StepDone({ onComplete }: { onComplete: () => void }) {
         type="button"
         onClick={handleGo}
         disabled={saving}
-        className="w-full rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-bold text-white hover:bg-indigo-700 disabled:opacity-60"
+        className="w-full rounded-xl bg-brand px-4 py-2.5 text-sm font-bold text-white hover:bg-brand-dark disabled:opacity-60"
       >
         {saving ? 'Entrando…' : 'Ir para o dashboard'}
       </button>
@@ -330,7 +330,7 @@ export default function OnboardingWizard({ token, onComplete }: Props) {
         {/* Header */}
         <div className="border-b border-gray-100 px-6 pt-6 pb-4">
           <h2 className="text-center text-xl font-bold text-gray-900">
-            {step === 'form' && 'Boas-vindas ao ContentAI! 👋'}
+            {step === 'form' && 'Boas-vindas ao Descrição AI! 👋'}
             {(step === 'loading' || step === 'result') && 'Veja o resultado'}
             {step === 'done' && 'Pronto para decolar!'}
           </h2>

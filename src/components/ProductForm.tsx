@@ -123,7 +123,7 @@ function ProductFormInner({ onResult, onLoading, token, fillRef }: Props) {
           type="text"
           placeholder="Ex: Tênis Running Pro 3000"
           {...register('name')}
-          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand"
         />
         {errors.name && <p className="mt-1 text-xs text-red-600">{errors.name.message}</p>}
       </div>
@@ -136,7 +136,7 @@ function ProductFormInner({ onResult, onLoading, token, fillRef }: Props) {
         <select
           id="category"
           {...register('category')}
-          className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+          className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand"
         >
           <option value="">Selecione…</option>
           {CATEGORIES.map((cat) => (
@@ -156,7 +156,7 @@ function ProductFormInner({ onResult, onLoading, token, fillRef }: Props) {
           rows={4}
           placeholder="Descreva os principais atributos, diferenciais e benefícios do produto…"
           {...register('features')}
-          className="w-full resize-none rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+          className="w-full resize-none rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand"
         />
         {errors.features && <p className="mt-1 text-xs text-red-600">{errors.features.message}</p>}
       </div>
@@ -182,7 +182,7 @@ function ProductFormInner({ onResult, onLoading, token, fillRef }: Props) {
           <button
             type="button"
             onClick={() => fileRef.current?.click()}
-            className="flex w-full items-center justify-center gap-2 rounded-lg border-2 border-dashed border-gray-300 px-4 py-6 text-sm text-gray-500 hover:border-indigo-400 hover:text-indigo-600"
+            className="flex w-full items-center justify-center gap-2 rounded-lg border-2 border-dashed border-gray-300 px-4 py-6 text-sm text-gray-500 hover:border-brand hover:text-brand"
           >
             <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
@@ -202,7 +202,7 @@ function ProductFormInner({ onResult, onLoading, token, fillRef }: Props) {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-60"
+        className="w-full rounded-lg bg-brand px-4 py-2.5 text-sm font-semibold text-white hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-60"
       >
         {isSubmitting ? (
           <span className="flex items-center justify-center gap-2">

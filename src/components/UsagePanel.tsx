@@ -17,7 +17,7 @@ const PLAN_LABEL: Record<Plan, string> = {
 const PLAN_COLOR: Record<Plan, string> = {
   free:    'bg-gray-100 text-gray-600',
   starter: 'bg-blue-100 text-blue-700',
-  pro:     'bg-indigo-100 text-indigo-700',
+  pro:     'bg-brand/15 text-brand-dark',
 };
 
 function formatResetDate(iso: string): string {
@@ -61,7 +61,7 @@ export default function UsagePanel({ token }: Props) {
   const isLow          = !isPro && remaining !== null && limit > 0 && (remaining / limit) < 0.2;
 
   // cor da barra: normal → indigo, baixo → amarelo/laranja
-  const barColor = isLow ? 'bg-amber-500' : 'bg-indigo-500';
+  const barColor = isLow ? 'bg-amber-500' : 'bg-brand/100';
 
   return (
     <div className="rounded-xl border border-gray-200 bg-white p-4 space-y-3">
@@ -77,7 +77,7 @@ export default function UsagePanel({ token }: Props) {
 
       {/* Créditos */}
       {isPro ? (
-        <p className="text-sm font-medium text-indigo-600">Gerações ilimitadas ✓</p>
+        <p className="text-sm font-medium text-brand">Gerações ilimitadas ✓</p>
       ) : (
         <>
           <div className="flex justify-between text-xs text-gray-600">

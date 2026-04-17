@@ -33,7 +33,7 @@ export default function StarRating({ generationId, token, onDone }: Props) {
 
   if (status === 'done') {
     return (
-      <div className="flex items-center gap-2 rounded-lg bg-indigo-50 px-4 py-3 text-sm text-indigo-700">
+      <div className="flex items-center gap-2 rounded-lg bg-brand/10 px-4 py-3 text-sm text-brand-dark">
         <span className="text-base">🙏</span>
         <span>Obrigado pelo feedback!</span>
       </div>
@@ -81,12 +81,12 @@ export default function StarRating({ generationId, token, onDone }: Props) {
             placeholder="Comentário opcional…"
             rows={2}
             maxLength={500}
-            className="w-full resize-none rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-indigo-400 focus:outline-none focus:ring-1 focus:ring-indigo-400"
+            className="w-full resize-none rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand"
           />
           <button
             type="button"
             onClick={() => handleSubmit(selected)}
-            className="rounded-lg bg-indigo-600 px-4 py-1.5 text-xs font-semibold text-white hover:bg-indigo-700"
+            className="rounded-lg bg-brand px-4 py-1.5 text-xs font-semibold text-white hover:bg-brand-dark"
           >
             Enviar avaliação
           </button>
