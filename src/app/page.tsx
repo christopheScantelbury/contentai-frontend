@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ScantelburyLogoMark, ScantelburyLogoFull } from '@/components/ScantelburyLogo';
+import BeforeAfterTabs from '@/components/BeforeAfterTabs';
 
 export const metadata: Metadata = {
   title: 'Descrição AI — Descrições de produtos geradas por IA em segundos',
@@ -139,8 +140,8 @@ function NavBar() {
 
 function Hero() {
   return (
-    <section className="bg-gradient-to-b from-brand/5 to-white px-4 py-14 text-center">
-      <div className="mx-auto max-w-3xl">
+    <section className="relative min-h-[80vh] bg-gradient-to-b from-brand/5 to-white px-4 py-14 text-center flex items-center">
+      <div className="mx-auto w-full max-w-3xl">
         <a
           href="https://scantelburydevs.com.br"
           target="_blank"
@@ -435,6 +436,8 @@ function Footer() {
           <a href="#planos" className="hover:text-brand">Planos</a>
           <a href="#como-funciona" className="hover:text-brand">Como funciona</a>
           <Link href="/login" className="hover:text-brand">Entrar</Link>
+          <Link href="/termos" className="hover:text-brand">Termos</Link>
+          <Link href="/privacidade" className="hover:text-brand">Privacidade</Link>
         </nav>
         <div className="flex flex-col items-center gap-1 sm:items-end">
           <p>© {new Date().getFullYear()} Descrição AI. Todos os direitos reservados.</p>
@@ -462,7 +465,7 @@ export default function LandingPage() {
       <main>
         <Hero />
         <HowItWorks />
-        <BeforeAfter />
+        <BeforeAfterTabs />
         <Pricing />
         <FAQ />
         <CtaBanner />
