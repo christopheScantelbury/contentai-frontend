@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ScantelburyLogoMark, ScantelburyLogoFull } from '@/components/ScantelburyLogo';
 import BeforeAfterTabs from '@/components/BeforeAfterTabs';
+import NavAuthButtons from '@/components/NavAuthButtons';
 
 export const metadata: Metadata = {
   title: 'Descrição AI — Descrições de produtos geradas por IA em segundos',
@@ -119,20 +120,7 @@ function NavBar() {
           <a href="#como-funciona" className="hover:text-brand">Como funciona</a>
           <a href="#planos" className="hover:text-brand">Planos</a>
         </nav>
-        <div className="flex items-center gap-3">
-          <Link
-            href="/login"
-            className="rounded-lg px-3 py-1.5 text-sm font-medium text-gray-700 hover:text-brand"
-          >
-            Entrar
-          </Link>
-          <Link
-            href="/register"
-            className="rounded-lg bg-brand px-4 py-1.5 text-sm font-semibold text-white hover:bg-brand-dark"
-          >
-            Começar grátis
-          </Link>
-        </div>
+        <NavAuthButtons />
       </div>
     </header>
   );
