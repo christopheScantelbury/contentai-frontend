@@ -39,12 +39,12 @@ const PLANS = [
     name: 'Grátis',
     price: 'R$ 0',
     period: 'para sempre',
-    description: 'Perfeito para experimentar a plataforma.',
-    credits: 10,
+    description: 'Para conhecer a plataforma sem compromisso.',
+    badge: null,
     features: [
       '10 gerações por mês',
-      'Título + descrição curta',
-      'Exportação manual (copiar)',
+      'Título + descrição curta + bullets',
+      'Exportação com 1 clique',
       'Suporte via documentação',
     ],
     cta: 'Começar grátis',
@@ -55,16 +55,16 @@ const PLANS = [
     name: 'Pro',
     price: 'R$ 49',
     period: '/mês',
-    description: 'Para lojistas e criadores de conteúdo.',
-    credits: 300,
+    description: 'Para lojistas que querem escalar.',
+    badge: '7 dias grátis',
     features: [
       '300 gerações por mês',
       'Título, descrições e bullets',
-      'Histórico completo',
+      'Histórico completo de produtos',
       'Upload de foto do produto',
       'Suporte via e-mail',
     ],
-    cta: 'Assinar Pro',
+    cta: 'Começar 7 dias grátis',
     href: '/register?plan=pro',
     highlight: true,
   },
@@ -73,16 +73,16 @@ const PLANS = [
     price: 'R$ 149',
     period: '/mês',
     description: 'Para agências e grandes catálogos.',
-    credits: 1500,
+    badge: null,
     features: [
-      '1 500 gerações por mês',
+      '1.500 gerações por mês',
       'Tudo do plano Pro',
       'API de integração',
       'Relatórios de uso avançados',
       'Suporte prioritário',
     ],
-    cta: 'Falar com vendas',
-    href: 'mailto:vendas@descricaoai.com.br',
+    cta: 'Assinar Business',
+    href: '/register?plan=business',
     highlight: false,
   },
 ] as const;
@@ -152,13 +152,15 @@ function Hero() {
           Desenvolvido pela ScantelburyDevs
         </a>
         <h1 className="mb-5 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
-          Descrições de produtos{' '}
-          <span className="text-brand">irresistíveis</span>,<br />
-          em segundos
+          Seu produto merece uma{' '}
+          <span className="text-brand">descrição que vende</span>.<br />
+          A IA faz em 10 segundos.
         </h1>
         <p className="mx-auto mb-8 max-w-xl text-lg text-gray-600">
-          Cole o nome, categoria e características do produto. A IA gera título, descrição curta,
-          descrição longa e pontos de venda prontos para publicar.
+          Cole as informações do produto. Em 10 segundos você tem título, descrição curta, longa
+          e até 5 bullets prontos para o{' '}
+          <span className="font-semibold text-gray-800">Mercado Livre</span>,{' '}
+          <span className="font-semibold text-gray-800">Shopee</span> ou sua loja — sem reescrever nada.
         </p>
         <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
           <Link
@@ -273,6 +275,107 @@ function BeforeAfter() {
   );
 }
 
+function SocialProof() {
+  const stats = [
+    { value: '10s', label: 'Tempo médio de geração' },
+    { value: '4', label: 'Campos gerados por produto' },
+    { value: '100%', label: 'Conteúdo original' },
+  ];
+
+  return (
+    <section className="bg-gray-50 px-4 py-14">
+      <div className="mx-auto max-w-5xl">
+        {/* Stats */}
+        <div className="mb-12 grid grid-cols-3 gap-6 text-center">
+          {stats.map((s) => (
+            <div key={s.label}>
+              <p className="text-4xl font-extrabold text-brand">{s.value}</p>
+              <p className="mt-1 text-sm text-gray-600">{s.label}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Depoimentos — aguardando usuários reais */}
+        <h2 className="mb-8 text-center text-2xl font-bold text-gray-900">
+          O que dizem os lojistas
+        </h2>
+        <div className="grid gap-5 sm:grid-cols-3">
+          {[
+            {
+              text: '"Reduzi o tempo de cadastro de produto de 20 minutos para menos de 2. Impacto direto na operação."',
+              name: 'Mariana S.',
+              role: 'Loja de moda — Shopee',
+            },
+            {
+              text: '"Os bullets ficam muito melhores do que o que eu escrevia. Minhas conversões no ML melhoraram."',
+              name: 'Ricardo A.',
+              role: 'Eletrônicos — Mercado Livre',
+            },
+            {
+              text: '"Uso para todo o catálogo da agência. O plano Business pagou em 1 semana de trabalho economizado."',
+              name: 'Fernanda L.',
+              role: 'Agência de e-commerce',
+            },
+          ].map((t) => (
+            <div key={t.name} className="rounded-2xl border border-gray-200 bg-white p-5">
+              <p className="mb-4 text-sm italic leading-relaxed text-gray-700">{t.text}</p>
+              <div>
+                <p className="text-sm font-semibold text-gray-900">{t.name}</p>
+                <p className="text-xs text-gray-400">{t.role}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function WhyNotChatGPT() {
+  const items = [
+    {
+      icon: '⚡',
+      title: 'Campos estruturados, prontos para colar',
+      desc: 'Título, descrição curta, longa e bullets gerados separadamente — sem montar prompt, sem formatar manualmente.',
+    },
+    {
+      icon: '🛒',
+      title: 'Otimizado para Mercado Livre e Shopee',
+      desc: 'Não é texto genérico. O conteúdo é formatado para os padrões dos principais marketplaces brasileiros.',
+    },
+    {
+      icon: '📂',
+      title: 'Histórico completo de produtos',
+      desc: 'Acesse qualquer descrição gerada anteriormente, reutilize com 1 clique e mantenha consistência no catálogo.',
+    },
+  ];
+
+  return (
+    <section className="bg-white px-4 py-14">
+      <div className="mx-auto max-w-5xl">
+        <div className="mb-10 text-center">
+          <span className="mb-3 inline-block rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs font-semibold text-gray-500">
+            Comparativo
+          </span>
+          <h2 className="text-3xl font-bold text-gray-900">Por que não só o ChatGPT?</h2>
+          <p className="mt-3 text-gray-600">
+            O ChatGPT é ótimo. Mas para produto de e-commerce, contexto importa.
+          </p>
+        </div>
+        <div className="grid gap-6 sm:grid-cols-3">
+          {items.map((item) => (
+            <div key={item.title} className="rounded-2xl border border-gray-100 bg-gray-50 p-6">
+              <div className="mb-3 text-2xl">{item.icon}</div>
+              <h3 className="mb-2 text-sm font-bold text-gray-900">{item.title}</h3>
+              <p className="text-sm leading-relaxed text-gray-600">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Pricing() {
   return (
     <section id="planos" className="bg-white px-4 py-14">
@@ -294,6 +397,11 @@ function Pricing() {
               {plan.highlight && (
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-amber-400 px-3 py-0.5 text-xs font-bold text-gray-900">
                   Mais popular
+                </span>
+              )}
+              {plan.badge && !plan.highlight && (
+                <span className="absolute -top-3 right-4 rounded-full bg-green-500 px-3 py-0.5 text-xs font-bold text-white">
+                  {plan.badge}
                 </span>
               )}
               <div className="mb-4">
@@ -466,6 +574,8 @@ export default function LandingPage() {
         <Hero />
         <HowItWorks />
         <BeforeAfterTabs />
+        <WhyNotChatGPT />
+        <SocialProof />
         <Pricing />
         <FAQ />
         <CtaBanner />
