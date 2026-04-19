@@ -9,3 +9,13 @@
   --brand-dark: #0088CC;
   --navy:       #0A0F1E;
 }
+
+@layer base {
+  h1, h2, h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+  }
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+}

@@ -81,7 +81,7 @@ const PLANS = [
       'Suporte prioritário',
     ],
     cta: 'Falar com vendas',
-    href: 'mailto:vendas@contentai.com.br',
+    href: 'mailto:vendas@descricaoai.com.br',
     highlight: false,
   },
 ] as const;
@@ -139,7 +139,7 @@ function NavBar() {
 
 function Hero() {
   return (
-    <section className="bg-gradient-to-b from-brand/5 to-white px-4 py-20 text-center">
+    <section className="bg-gradient-to-b from-brand/5 to-white px-4 py-14 text-center">
       <div className="mx-auto max-w-3xl">
         <a
           href="https://scantelburydevs.com.br"
@@ -162,7 +162,7 @@ function Hero() {
         <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
           <Link
             href="/register"
-            className="w-full rounded-xl bg-brand px-8 py-3.5 text-base font-bold text-white shadow hover:bg-brand-dark sm:w-auto"
+            className="w-full rounded-xl bg-brand px-10 py-4 text-base font-bold text-white shadow hover:bg-brand-dark sm:w-auto"
           >
             Começar grátis — 10 gerações/mês
           </Link>
@@ -199,7 +199,7 @@ function HowItWorks() {
   ];
 
   return (
-    <section id="como-funciona" className="bg-white px-4 py-20">
+    <section id="como-funciona" className="bg-white px-4 py-14">
       <div className="mx-auto max-w-5xl">
         <h2 className="mb-12 text-center text-3xl font-bold text-gray-900">Como funciona</h2>
         <div className="grid gap-8 sm:grid-cols-3">
@@ -220,7 +220,7 @@ function HowItWorks() {
 
 function BeforeAfter() {
   return (
-    <section className="bg-gray-50 px-4 py-20">
+    <section className="bg-gray-50 px-4 py-14">
       <div className="mx-auto max-w-5xl">
         <h2 className="mb-4 text-center text-3xl font-bold text-gray-900">
           Veja a diferença
@@ -274,7 +274,7 @@ function BeforeAfter() {
 
 function Pricing() {
   return (
-    <section id="planos" className="bg-white px-4 py-20">
+    <section id="planos" className="bg-white px-4 py-14">
       <div className="mx-auto max-w-5xl">
         <h2 className="mb-4 text-center text-3xl font-bold text-gray-900">Planos e preços</h2>
         <p className="mb-12 text-center text-gray-600">
@@ -344,23 +344,83 @@ function Pricing() {
   );
 }
 
+// ─── FAQ ────────────────────────────────────────────────────────────────────
+
+const FAQS = [
+  {
+    q: 'A IA copia textos de outros lugares?',
+    a: 'Não. Cada descrição é gerada do zero com base nas informações que você fornece. O conteúdo é original e exclusivo para o seu produto.',
+  },
+  {
+    q: 'Funciona para Mercado Livre, Shopee e outras plataformas?',
+    a: 'Sim. O conteúdo gerado — título, descrição curta, longa e bullets — é compatível com qualquer marketplace ou loja virtual. Basta copiar e colar.',
+  },
+  {
+    q: 'Posso cancelar quando quiser?',
+    a: 'Sim, sem multa e sem burocracia. Você cancela pela própria conta a qualquer momento e não é cobrado no mês seguinte.',
+  },
+  {
+    q: 'Por que não usar o ChatGPT direto?',
+    a: 'O Descrição AI gera campos estruturados e separados (título, curta, longa, bullets) prontos para colar — sem montar prompt. Também salva histórico de todos os produtos gerados.',
+  },
+  {
+    q: 'Quantas gerações posso fazer por mês?',
+    a: 'Depende do plano: Grátis (10), Pro (300) ou Business (1.500). Cada geração produz título + descrição curta + descrição completa + até 5 bullets.',
+  },
+  {
+    q: 'Meus dados de produto ficam armazenados?',
+    a: 'Sim, o histórico completo fica salvo na sua conta. Você pode acessar, reutilizar ou exportar qualquer geração anterior a qualquer momento.',
+  },
+] as const;
+
+function FAQ() {
+  return (
+    <section className="bg-gray-50 px-4 py-14">
+      <div className="mx-auto max-w-3xl">
+        <h2 className="mb-10 text-center text-3xl font-bold text-gray-900">
+          Perguntas frequentes
+        </h2>
+        <dl className="space-y-4">
+          {FAQS.map((faq, i) => (
+            <details
+              key={i}
+              className="group rounded-xl border border-gray-200 bg-white px-5 py-4 open:shadow-sm"
+            >
+              <summary className="flex cursor-pointer items-center justify-between gap-4 text-sm font-semibold text-gray-900 marker:content-none">
+                {faq.q}
+                <svg
+                  className="h-4 w-4 shrink-0 text-brand transition-transform group-open:rotate-180"
+                  fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <p className="mt-3 text-sm leading-relaxed text-gray-600">{faq.a}</p>
+            </details>
+          ))}
+        </dl>
+      </div>
+    </section>
+  );
+}
+
 function CtaBanner() {
   return (
-    <section className="bg-brand px-4 py-16 text-center">
+    <section className="bg-navy px-4 py-16 text-center">
       <div className="mx-auto max-w-2xl">
         <h2 className="mb-4 text-3xl font-bold text-white">
           Pronto para economizar horas toda semana?
         </h2>
-        <p className="mb-8 text-brand/70">
+        <p className="mb-8 text-gray-400">
           Junte-se a centenas de lojistas que já automatizaram a criação de conteúdo com Descrição AI.
         </p>
         <Link
           href="/register"
-          className="inline-block rounded-xl bg-white px-8 py-3.5 text-base font-bold text-brand shadow hover:bg-brand/10"
+          className="inline-block rounded-xl bg-brand px-10 py-4 text-base font-bold text-navy shadow-lg shadow-brand/30 hover:bg-brand-dark hover:text-white transition-colors"
         >
           Começar grátis agora
         </Link>
-        <p className="mt-3 text-xs text-brand/60">Sem cartão de crédito. 10 gerações grátis por mês.</p>
+        <p className="mt-3 text-xs text-gray-500">Sem cartão de crédito. 10 gerações grátis por mês.</p>
       </div>
     </section>
   );
@@ -404,6 +464,7 @@ export default function LandingPage() {
         <HowItWorks />
         <BeforeAfter />
         <Pricing />
+        <FAQ />
         <CtaBanner />
       </main>
       <Footer />
