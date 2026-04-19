@@ -40,7 +40,7 @@ const PLANS = [
     price: 'R$ 0',
     period: 'para sempre',
     description: 'Para conhecer a plataforma sem compromisso.',
-    badge: null,
+    badge: null as string | null,
     features: [
       '10 gerações por mês',
       'Título + descrição curta + bullets',
