@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: 'Descrição AI — Gerador de conteúdo para produtos',
   description:
     'Gere títulos, descrições e bullets de venda para seus produtos com inteligência artificial. Desenvolvido pela ScantelburyDevs.',
+  icons: {
+    icon: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({
