@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import ProductForm, { type ProductFormHandle } from '@/components/ProductForm';
 import ResultPanel        from '@/components/ResultPanel';
@@ -19,7 +19,7 @@ interface Props {
   showOnboarding:     boolean;
 }
 
-export default function DashboardClient({ token, userEmail, userId, showOnboarding }: Props) {
+export default function DashboardClient({ token: initialToken, userEmail, userId, showOnboarding }: Props) {
   const router    = useRouter();
   const formRef   = useRef<ProductFormHandle>(null);
 
@@ -28,6 +28,25 @@ export default function DashboardClient({ token, userEmail, userId, showOnboardi
   const [isLoading,       setIsLoading]       = useState(false);
   const [generationId,    setGenerationId]    = useState<string | null>(null);
   const [wizardVisible,   setWizardVisible]   = useState(showOnboarding);
+
+  // Mantém o token sempre atualizado — o Supabase renova o JWT automaticamente
+  const [token, setToken] = useState(initialToken);
+
+  useEffect(() => {
+    const supabase = createClient();
+
+    // Garante que temos o token mais recente ao montar o componente
+    supabase.auth.getSession().then(({ data }) => {
+      if (data.session?.access_token) setToken(data.session.access_token);
+    });
+
+    // Atualiza sempre que o Supabase renovar o token
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.access_token) setToken(session.access_token);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   async function handleLogout() {
     const supabase = createClient();
