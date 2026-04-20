@@ -35,14 +35,48 @@ export default function RegisterPage() {
     formState: { errors, isSubmitting },
   } = useForm<FormData>({ resolver: zodResolver(schema) });
 
+  function getDeviceId(): string {
+    try {
+      let id = localStorage.getItem('dvc_id');
+      if (!id) {
+        id = crypto.randomUUID();
+        localStorage.setItem('dvc_id', id);
+      }
+      return id;
+    } catch {
+      return 'unknown';
+    }
+  }
+
   async function onSubmit(data: FormData) {
     setServerError('');
     const supabase = createClient();
+    const deviceId = getDeviceId();
+
+    // Verifica se este dispositivo já tem conta gratuita
+    try {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3000';
+      const check = await fetch(`${apiUrl}/api/auth/check-device`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ device_id: deviceId }),
+      });
+      const { blocked } = await check.json();
+      if (blocked) {
+        setServerError('Este dispositivo já possui uma conta gratuita. Faça login na sua conta ou escolha um plano pago para continuar.');
+        return;
+      }
+    } catch {
+      // Se a verificação falhar, permite o cadastro
+    }
 
     const { data: signUpData, error } = await supabase.auth.signUp({
       email:    data.email,
       password: data.password,
-      options:  { emailRedirectTo: 'https://www.descricaoai.com.br/dashboard' },
+      options:  {
+        emailRedirectTo: 'https://www.descricaoai.com.br/dashboard',
+        data: { device_id: deviceId },
+      },
     });
 
     if (error) {

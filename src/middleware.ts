@@ -42,8 +42,13 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
+  // Bloqueia acesso ao dashboard se email não confirmado
+  if (isProtected && user && !user.email_confirmed_at) {
+    return NextResponse.redirect(new URL('/confirmar-email', request.url));
+  }
+
   // Redirect authenticated users away from auth pages
-  if (user && (pathname === '/login' || pathname === '/register')) {
+  if (user && user.email_confirmed_at && (pathname === '/login' || pathname === '/register')) {
     return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
