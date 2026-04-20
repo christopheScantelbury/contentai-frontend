@@ -25,6 +25,9 @@ export default function RegisterPage() {
   const router = useRouter();
   const [serverError,   setServerError]   = useState('');
   const [emailSent,     setEmailSent]     = useState(false);
+  const [emailExists,   setEmailExists]   = useState(false);
+  const [existingEmail, setExistingEmail] = useState('');
+  const [resetSent,     setResetSent]     = useState(false);
 
   const {
     register,
@@ -36,7 +39,7 @@ export default function RegisterPage() {
     setServerError('');
     const supabase = createClient();
 
-    const { error } = await supabase.auth.signUp({
+    const { data: signUpData, error } = await supabase.auth.signUp({
       email:    data.email,
       password: data.password,
       options:  { emailRedirectTo: `${window.location.origin}/dashboard` },
@@ -47,13 +50,83 @@ export default function RegisterPage() {
       return;
     }
 
+    // Supabase retorna identities: [] quando o e-mail já está cadastrado
+    if (signUpData.user?.identities?.length === 0) {
+      setExistingEmail(data.email);
+      setEmailExists(true);
+      return;
+    }
+
     setEmailSent(true);
+  }
+
+  async function handleResetPassword() {
+    const supabase = createClient();
+    await supabase.auth.resetPasswordForEmail(existingEmail, {
+      redirectTo: `${window.location.origin}/nova-senha`,
+    });
+    setResetSent(true);
+  }
+
+  if (emailExists) {
+    return (
+      <div className="flex min-h-screen items-center justify-center px-4">
+        <div className="w-full max-w-sm">
+          <div className="mb-8 text-center">
+            <Link href="/" className="inline-block text-2xl font-bold text-brand hover:opacity-80">
+              Descrição AI
+            </Link>
+          </div>
+          <div className="rounded-xl border border-amber-200 bg-amber-50 p-6 text-center">
+            <div className="mb-3 text-3xl">👋</div>
+            <h2 className="mb-2 text-lg font-bold text-gray-900">Este e-mail já tem conta</h2>
+            <p className="mb-5 text-sm text-gray-600">
+              <span className="font-medium text-gray-800">{existingEmail}</span> já está cadastrado.
+              Você quer entrar ou redefinir sua senha?
+            </p>
+            <div className="space-y-3">
+              <Link
+                href="/login"
+                className="block w-full rounded-lg bg-brand px-4 py-2.5 text-center text-sm font-semibold text-white hover:bg-brand-dark"
+              >
+                Entrar com este e-mail
+              </Link>
+              {resetSent ? (
+                <p className="rounded-lg bg-green-50 px-3 py-2 text-sm text-green-700">
+                  E-mail de redefinição enviado! Verifique sua caixa de entrada.
+                </p>
+              ) : (
+                <button
+                  type="button"
+                  onClick={handleResetPassword}
+                  className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                >
+                  Esqueci minha senha
+                </button>
+              )}
+            </div>
+            <button
+              type="button"
+              onClick={() => setEmailExists(false)}
+              className="mt-4 text-xs text-gray-400 hover:text-brand"
+            >
+              ← Usar outro e-mail
+            </button>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   if (emailSent) {
     return (
       <div className="flex min-h-screen items-center justify-center px-4">
         <div className="w-full max-w-sm text-center">
+          <div className="mb-8 text-center">
+            <Link href="/" className="inline-block text-2xl font-bold text-brand hover:opacity-80">
+              Descrição AI
+            </Link>
+          </div>
           <div className="mb-4 text-4xl">📧</div>
           <h1 className="mb-2 text-xl font-bold">Confirme seu e-mail</h1>
           <p className="text-sm text-gray-600">
