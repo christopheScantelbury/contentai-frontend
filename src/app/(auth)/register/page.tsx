@@ -42,7 +42,7 @@ export default function RegisterPage() {
     const { data: signUpData, error } = await supabase.auth.signUp({
       email:    data.email,
       password: data.password,
-      options:  { emailRedirectTo: `${window.location.origin}/dashboard` },
+      options:  { emailRedirectTo: 'https://www.descricaoai.com.br/dashboard' },
     });
 
     if (error) {
