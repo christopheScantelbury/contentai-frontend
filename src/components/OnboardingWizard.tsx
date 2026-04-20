@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -311,9 +311,30 @@ function StepDone({ onComplete }: { onComplete: () => void }) {
 
 // ─── Main component ───────────────────────────────────────────────────────────
 
-export default function OnboardingWizard({ token, onComplete }: Props) {
+export default function OnboardingWizard({ token: initialToken, onComplete }: Props) {
   const [step,   setStep]   = useState<Step>('form');
   const [result, setResult] = useState<GenerateResult | null>(null);
+
+  // Mantém o token sempre atualizado (mesmo mecanismo do DashboardClient)
+  const [token, setToken] = useState(initialToken);
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getSession().then(({ data }) => {
+      if (data.session?.access_token) setToken(data.session.access_token);
+    });
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => {
+      if (session?.access_token) setToken(session.access_token);
+    });
+    return () => subscription.unsubscribe();
+  }, []);
+
+  async function handleSkip() {
+    try {
+      const supabase = createClient();
+      await supabase.auth.updateUser({ data: { onboarding_completed: true } });
+    } catch { /* não-crítico */ }
+    onComplete();
+  }
 
   const stepNumber: 1 | 2 | 3 = step === 'form' ? 1 : step === 'loading' || step === 'result' ? 2 : 3;
 
@@ -327,6 +348,18 @@ export default function OnboardingWizard({ token, onComplete }: Props) {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
       {/* Modal */}
       <div className="relative w-full max-w-lg rounded-2xl bg-white shadow-2xl">
+        {/* Botão fechar */}
+        <button
+          type="button"
+          onClick={handleSkip}
+          className="absolute right-4 top-4 rounded-full p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600"
+          title="Pular tutorial"
+        >
+          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
         {/* Header */}
         <div className="border-b border-gray-100 px-6 pt-6 pb-4">
           <h2 className="text-center text-xl font-bold text-gray-900">
