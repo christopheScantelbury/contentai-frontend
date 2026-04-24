@@ -1,47 +1,57 @@
-interface LogoMarkProps {
-  size?: number;
+import Link from 'next/link';
+
+interface LogoProps {
+  href?: string;
   className?: string;
 }
 
-export function ScantelburyLogoMark({ size = 32, className }: LogoMarkProps) {
+// Ícone hexagonal standalone (para uso em favicons, ícones compactos)
+export function ScantelburyLogoMark({ className = '' }: { className?: string }) {
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 72 72"
-      fill="none"
-      className={className}
-      aria-label="ScantelburyDevs"
-    >
-      <path d="M36 4L64 20V52L36 68L8 52V20L36 4Z" stroke="#00D4FF" strokeWidth="1.5" fill="none" opacity="0.3" />
-      <path d="M36 12L58 24V48L36 60L14 48V24L36 12Z" fill="#0A0F1E" stroke="#00D4FF" strokeWidth="1" opacity="0.7" />
-      <rect x="22" y="24" width="20" height="4" rx="2" fill="#00D4FF" />
-      <rect x="30" y="33" width="20" height="4" rx="2" fill="#00D4FF" />
-      <rect x="22" y="42" width="20" height="4" rx="2" fill="#00D4FF" />
-      <line x1="42" y1="28" x2="30" y2="33" stroke="#00D4FF" strokeWidth="1.5" strokeLinecap="round" opacity="0.55" />
-      <line x1="30" y1="37" x2="42" y2="42" stroke="#00D4FF" strokeWidth="1.5" strokeLinecap="round" opacity="0.55" />
-    </svg>
-  );
-}
-
-interface LogoFullProps {
-  size?: 'sm' | 'md' | 'lg';
-  className?: string;
-}
-
-export function ScantelburyLogoFull({ size = 'md', className }: LogoFullProps) {
-  const sizes = {
-    sm: { mark: 20, text: 'text-sm' },
-    md: { mark: 28, text: 'text-base' },
-    lg: { mark: 36, text: 'text-lg' },
-  };
-  const s = sizes[size];
-  return (
-    <div className={`flex items-center gap-2 ${className ?? ''}`}>
-      <ScantelburyLogoMark size={s.mark} />
-      <span className={`font-display font-extrabold tracking-tight text-navy ${s.text}`}>
-        Scantelbury<span className="text-brand">Devs</span>
-      </span>
+    <div className={`inline-flex items-center justify-center ${className}`}>
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-8 h-8">
+        <polygon points="16,2 28,9 28,23 16,30 4,23 4,9" fill="url(#grad1)" />
+        <text x="16" y="22" textAnchor="middle" fontSize="13" fontWeight="800"
+          fontFamily="system-ui,-apple-system,sans-serif" fill="white">S</text>
+        <defs>
+          <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#00D4FF" />
+            <stop offset="100%" stopColor="#0055CC" />
+          </linearGradient>
+        </defs>
+      </svg>
     </div>
   );
+}
+
+// Logo completo: ícone + texto "Descrição AI"
+export function ScantelburyLogoFull({ href, className = '' }: LogoProps) {
+  const inner = (
+    <div className={`inline-flex items-center gap-2 select-none ${className}`}>
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 flex-shrink-0">
+        <polygon points="16,2 28,9 28,23 16,30 4,23 4,9" fill="url(#grad2)" />
+        <text x="16" y="22" textAnchor="middle" fontSize="13" fontWeight="800"
+          fontFamily="system-ui,-apple-system,sans-serif" fill="white">S</text>
+        <defs>
+          <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#00D4FF" />
+            <stop offset="100%" stopColor="#0055CC" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <div className="flex items-baseline gap-0.5 leading-none">
+        <span className="text-xl font-extrabold tracking-tight text-gray-900">Descrição</span>
+        <span className="text-xl font-extrabold tracking-tight" style={{ color: '#00D4FF' }}>AI</span>
+      </div>
+    </div>
+  );
+
+  if (href) {
+    return (
+      <Link href={href} className="hover:opacity-80 transition-opacity">
+        {inner}
+      </Link>
+    );
+  }
+  return inner;
 }
