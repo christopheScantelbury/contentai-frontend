@@ -181,9 +181,7 @@ export default function AdminDashboardPage() {
                 outerRadius={110}
                 paddingAngle={3}
                 dataKey="value"
-                label={({ name, percent }) =>
-                  `${PLAN_LABELS[name.toLowerCase()] ?? name} ${(percent * 100).toFixed(0)}%`
-                }
+                label={false}
                 labelLine={false}
               >
                 {planPieData.map((_, index) => (
@@ -191,7 +189,7 @@ export default function AdminDashboardPage() {
                 ))}
               </Pie>
               <Tooltip
-                formatter={(value: number) => [value.toLocaleString('pt-BR'), 'Usuários']}
+                formatter={(value) => [`${Number(value).toLocaleString('pt-BR')} usuários`]}
               />
               <Legend />
             </PieChart>
@@ -212,9 +210,8 @@ export default function AdminDashboardPage() {
                 }
               />
               <Tooltip
-                formatter={(value: number) => [
-                  value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
-                  'Receita',
+                formatter={(value) => [
+                  Number(value).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
                 ]}
               />
               <Bar dataKey="receita" radius={[4, 4, 0, 0]}>
