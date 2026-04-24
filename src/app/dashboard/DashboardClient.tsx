@@ -8,6 +8,7 @@ import UsagePanel         from '@/components/UsagePanel';
 import HistoryPanel       from '@/components/HistoryPanel';
 import OnboardingWizard   from '@/components/OnboardingWizard';
 import { createClient } from '@/lib/supabase';
+import Logo from '@/components/Logo';
 import type { GenerateResult } from '@/lib/api';
 
 type Tab = 'gerar' | 'historico';
@@ -29,7 +30,7 @@ export default function DashboardClient({ token: initialToken, userEmail, userId
   const [generationId,    setGenerationId]    = useState<string | null>(null);
   const [wizardVisible,   setWizardVisible]   = useState(showOnboarding);
 
-  // Mantém o token sempre atualizado — o Supabase renova o JWT automaticamente
+  // MantÃ©m o token sempre atualizado â o Supabase renova o JWT automaticamente
   const [token, setToken] = useState(initialToken);
 
   useEffect(() => {
@@ -71,7 +72,7 @@ export default function DashboardClient({ token: initialToken, userEmail, userId
 
       if (data?.id) setGenerationId(data.id as string);
     } catch {
-      // sem generation_id — StarRating não aparece
+      // sem generation_id â StarRating nÃ£o aparece
     }
   }
 
@@ -92,7 +93,7 @@ export default function DashboardClient({ token: initialToken, userEmail, userId
       {/* Header */}
       <header className="border-b border-gray-200 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-          <span className="text-lg font-bold text-brand">Descrição AI</span>
+          <Logo size="md" />
           <nav className="hidden gap-1 sm:flex">
             {(['gerar', 'historico'] as Tab[]).map((t) => (
               <button
@@ -104,7 +105,7 @@ export default function DashboardClient({ token: initialToken, userEmail, userId
                     : 'text-gray-600 hover:bg-gray-100'
                 }`}
               >
-                {t === 'gerar' ? 'Gerar' : 'Histórico'}
+                {t === 'gerar' ? 'Gerar' : 'HistÃ³rico'}
               </button>
             ))}
           </nav>
@@ -124,13 +125,13 @@ export default function DashboardClient({ token: initialToken, userEmail, userId
       <main className="mx-auto max-w-6xl px-4 py-8">
         {tab === 'gerar' ? (
           <div className="grid gap-6 lg:grid-cols-[1fr_2fr_2fr]">
-            {/* Coluna 1 — métricas */}
+            {/* Coluna 1 â mÃ©tricas */}
             <div className="space-y-4">
               <h2 className="text-sm font-semibold uppercase tracking-wide text-gray-400">Seu plano</h2>
               <UsagePanel token={token} />
             </div>
 
-            {/* Coluna 2 — formulário */}
+            {/* Coluna 2 â formulÃ¡rio */}
             <div className="rounded-xl border border-gray-200 bg-white p-6">
               <h2 className="mb-5 text-sm font-semibold uppercase tracking-wide text-gray-400">
                 Dados do produto
@@ -143,7 +144,7 @@ export default function DashboardClient({ token: initialToken, userEmail, userId
               />
             </div>
 
-            {/* Coluna 3 — resultado + rating */}
+            {/* Coluna 3 â resultado + rating */}
             <div>
               <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-400">Resultado</h2>
               <ResultPanel
