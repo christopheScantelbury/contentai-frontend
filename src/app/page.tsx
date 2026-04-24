@@ -1,25 +1,25 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ScantelburyLogoMark, ScantelburyLogoFull } from '@/components/ScantelburyLogo';
+import Logo from '@/components/Logo';
 import BeforeAfterTabs from '@/components/BeforeAfterTabs';
 import NavAuthButtons from '@/components/NavAuthButtons';
 
 export const metadata: Metadata = {
-  title: 'Descrição AI — Descrições de produtos geradas por IA em segundos',
+  title: 'DescriÃ§Ã£o AI â DescriÃ§Ãµes de produtos geradas por IA em segundos',
   description:
-    'Gere títulos, descrições curtas, longas e pontos de venda para qualquer produto com inteligência artificial. Economize horas de trabalho toda semana.',
+    'Gere tÃ­tulos, descriÃ§Ãµes curtas, longas e pontos de venda para qualquer produto com inteligÃªncia artificial. Economize horas de trabalho toda semana.',
   openGraph: {
-    title: 'Descrição AI — Descrições de produtos geradas por IA',
+    title: 'DescriÃ§Ã£o AI â DescriÃ§Ãµes de produtos geradas por IA',
     description:
-      'Gere conteúdo de produto profissional em segundos. Hero, bullets e SEO prontos para copiar.',
+      'Gere conteÃºdo de produto profissional em segundos. Hero, bullets e SEO prontos para copiar.',
     url: 'https://descricaoai.com.br',
-    siteName: 'Descrição AI',
+    siteName: 'DescriÃ§Ã£o AI',
     images: [
       {
         url: 'https://descricaoai.com.br/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Descrição AI — Gerador de conteúdo com IA',
+        alt: 'DescriÃ§Ã£o AI â Gerador de conteÃºdo com IA',
       },
     ],
     locale: 'pt_BR',
@@ -27,60 +27,60 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Descrição AI — Descrições de produtos com IA',
-    description: 'Gere conteúdo de produto profissional em segundos.',
+    title: 'DescriÃ§Ã£o AI â DescriÃ§Ãµes de produtos com IA',
+    description: 'Gere conteÃºdo de produto profissional em segundos.',
     images: ['https://descricaoai.com.br/og-image.png'],
   },
 };
 
-// ─── Planos ────────────────────────────────────────────────────────────────
+// âââ Planos ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 const PLANS = [
   {
-    name: 'Grátis',
+    name: 'GrÃ¡tis',
     price: 'R$ 0',
     period: 'para sempre',
     description: 'Para conhecer a plataforma sem compromisso.',
     badge: null as string | null,
     features: [
-      '10 gerações por mês',
-      'Título + descrição curta + bullets',
-      'Exportação com 1 clique',
-      'Suporte via documentação',
+      '10 geraÃ§Ãµes por mÃªs',
+      'TÃ­tulo + descriÃ§Ã£o curta + bullets',
+      'ExportaÃ§Ã£o com 1 clique',
+      'Suporte via documentaÃ§Ã£o',
     ],
-    cta: 'Começar grátis',
+    cta: 'ComeÃ§ar grÃ¡tis',
     href: '/register',
     highlight: false,
   },
   {
     name: 'Pro',
     price: 'R$ 49',
-    period: '/mês',
+    period: '/mÃªs',
     description: 'Para lojistas que querem escalar.',
-    badge: '7 dias grátis',
+    badge: '7 dias grÃ¡tis',
     features: [
-      '300 gerações por mês',
-      'Título, descrições e bullets',
-      'Histórico completo de produtos',
+      '300 geraÃ§Ãµes por mÃªs',
+      'TÃ­tulo, descriÃ§Ãµes e bullets',
+      'HistÃ³rico completo de produtos',
       'Upload de foto do produto',
       'Suporte via e-mail',
     ],
-    cta: 'Começar 7 dias grátis',
+    cta: 'ComeÃ§ar 7 dias grÃ¡tis',
     href: '/register?plan=pro',
     highlight: true,
   },
   {
     name: 'Business',
     price: 'R$ 149',
-    period: '/mês',
-    description: 'Para agências e grandes catálogos.',
+    period: '/mÃªs',
+    description: 'Para agÃªncias e grandes catÃ¡logos.',
     badge: null,
     features: [
-      '1.500 gerações por mês',
+      '1.500 geraÃ§Ãµes por mÃªs',
       'Tudo do plano Pro',
-      'API de integração',
-      'Relatórios de uso avançados',
-      'Suporte prioritário',
+      'API de integraÃ§Ã£o',
+      'RelatÃ³rios de uso avanÃ§ados',
+      'Suporte prioritÃ¡rio',
     ],
     cta: 'Assinar Business',
     href: '/register?plan=business',
@@ -88,34 +88,34 @@ const PLANS = [
   },
 ] as const;
 
-// ─── Antes / Depois ─────────────────────────────────────────────────────────
+// âââ Antes / Depois âââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 const BEFORE_AFTER = {
   before: {
-    title: 'Tênis Esportivo Azul',
+    title: 'TÃªnis Esportivo Azul',
     description:
-      'Tênis azul para corrida. Material sintético. Solado de borracha. Disponível nos tamanhos 38 ao 44.',
+      'TÃªnis azul para corrida. Material sintÃ©tico. Solado de borracha. DisponÃ­vel nos tamanhos 38 ao 44.',
   },
   after: {
-    title: 'Tênis Running Pro 3000 — Leveza e Amortecimento para Sua Melhor Performance',
+    title: 'TÃªnis Running Pro 3000 â Leveza e Amortecimento para Sua Melhor Performance',
     description:
-      'Desenvolvido para corredores que buscam velocidade sem abrir mão do conforto, o Tênis Running Pro 3000 combina cabedal em mesh respirável com solado de borracha de alta tração. O sistema de amortecimento EVA absorve impactos, reduzindo a fadiga mesmo em corridas longas. Design aerodinâmico em azul royal com detalhes reflexivos para visibilidade noturna.',
+      'Desenvolvido para corredores que buscam velocidade sem abrir mÃ£o do conforto, o TÃªnis Running Pro 3000 combina cabedal em mesh respirÃ¡vel com solado de borracha de alta traÃ§Ã£o. O sistema de amortecimento EVA absorve impactos, reduzindo a fadiga mesmo em corridas longas. Design aerodinÃ¢mico em azul royal com detalhes reflexivos para visibilidade noturna.',
     bullets: [
-      'Cabedal em mesh respirável — mantém os pés frescos durante toda a corrida',
-      'Amortecimento EVA de dupla densidade — absorção de impacto superior',
-      'Solado de borracha antiderrapante — aderência em asfalto e trilha',
-      'Refletivo 360° — segurança em treinos noturnos',
+      'Cabedal em mesh respirÃ¡vel â mantÃ©m os pÃ©s frescos durante toda a corrida',
+      'Amortecimento EVA de dupla densidade â absorÃ§Ã£o de impacto superior',
+      'Solado de borracha antiderrapante â aderÃªncia em asfalto e trilha',
+      'Refletivo 360Â° â seguranÃ§a em treinos noturnos',
     ],
   },
 };
 
-// ─── Componentes de seção ────────────────────────────────────────────────────
+// âââ Componentes de seÃ§Ã£o ââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 function NavBar() {
   return (
     <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <span className="text-lg font-bold text-brand">Descrição AI</span>
+        <span className="text-lg font-bold text-brand">DescriÃ§Ã£o AI</span>
         <nav className="hidden items-center gap-6 text-sm font-medium text-gray-600 sm:flex">
           <a href="#como-funciona" className="hover:text-brand">Como funciona</a>
           <a href="#planos" className="hover:text-brand">Planos</a>
@@ -136,35 +136,35 @@ function Hero() {
           rel="noopener noreferrer"
           className="mb-4 inline-flex items-center gap-2 rounded-full border border-brand/30 bg-brand/10 px-3 py-1 text-xs font-semibold tracking-wide text-brand transition hover:bg-brand/20"
         >
-          <ScantelburyLogoMark size={14} />
+          <Logo size="sm" />
           Desenvolvido pela ScantelburyDevs
         </a>
         <h1 className="mb-5 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
           Seu produto merece uma{' '}
-          <span className="text-brand">descrição que vende</span>.<br />
+          <span className="text-brand">descriÃ§Ã£o que vende</span>.<br />
           A IA faz em 10 segundos.
         </h1>
         <p className="mx-auto mb-8 max-w-xl text-lg text-gray-600">
-          Cole as informações do produto. Em 10 segundos você tem título, descrição curta, longa
-          e até 5 bullets prontos para o{' '}
+          Cole as informaÃ§Ãµes do produto. Em 10 segundos vocÃª tem tÃ­tulo, descriÃ§Ã£o curta, longa
+          e atÃ© 5 bullets prontos para o{' '}
           <span className="font-semibold text-gray-800">Mercado Livre</span>,{' '}
-          <span className="font-semibold text-gray-800">Shopee</span> ou sua loja — sem reescrever nada.
+          <span className="font-semibold text-gray-800">Shopee</span> ou sua loja â sem reescrever nada.
         </p>
         <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
           <Link
             href="/register"
             className="w-full rounded-xl bg-brand px-10 py-4 text-base font-bold text-white shadow hover:bg-brand-dark sm:w-auto"
           >
-            Começar grátis — 10 gerações/mês
+            ComeÃ§ar grÃ¡tis â 10 geraÃ§Ãµes/mÃªs
           </Link>
           <a
             href="#como-funciona"
             className="text-sm font-medium text-brand hover:underline"
           >
-            Ver como funciona ↓
+            Ver como funciona â
           </a>
         </div>
-        <p className="mt-4 text-xs text-gray-400">Sem cartão de crédito. Cancele quando quiser.</p>
+        <p className="mt-4 text-xs text-gray-400">Sem cartÃ£o de crÃ©dito. Cancele quando quiser.</p>
       </div>
     </section>
   );
@@ -174,13 +174,13 @@ function HowItWorks() {
   const steps = [
     {
       num: '1',
-      title: 'Preencha o formulário',
-      desc: 'Informe o nome do produto, a categoria e suas principais características. Opcionalmente, adicione uma foto.',
+      title: 'Preencha o formulÃ¡rio',
+      desc: 'Informe o nome do produto, a categoria e suas principais caracterÃ­sticas. Opcionalmente, adicione uma foto.',
     },
     {
       num: '2',
-      title: 'A IA gera o conteúdo',
-      desc: 'Em menos de 10 segundos você recebe título, descrição curta, descrição completa e até 5 pontos de venda.',
+      title: 'A IA gera o conteÃºdo',
+      desc: 'Em menos de 10 segundos vocÃª recebe tÃ­tulo, descriÃ§Ã£o curta, descriÃ§Ã£o completa e atÃ© 5 pontos de venda.',
     },
     {
       num: '3',
@@ -214,10 +214,10 @@ function BeforeAfter() {
     <section className="bg-gray-50 px-4 py-14">
       <div className="mx-auto max-w-5xl">
         <h2 className="mb-4 text-center text-3xl font-bold text-gray-900">
-          Veja a diferença
+          Veja a diferenÃ§a
         </h2>
         <p className="mb-12 text-center text-gray-600">
-          Do texto genérico a uma descrição que converte.
+          Do texto genÃ©rico a uma descriÃ§Ã£o que converte.
         </p>
         <div className="grid gap-6 md:grid-cols-2">
           {/* Antes */}
@@ -239,7 +239,7 @@ function BeforeAfter() {
           <div className="rounded-2xl border border-green-100 bg-white p-6">
             <div className="mb-3 flex items-center gap-2">
               <span className="rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-semibold text-green-600">
-                Depois — Descrição AI
+                Depois â DescriÃ§Ã£o AI
               </span>
             </div>
             <p className="mb-2 text-base font-semibold text-gray-900">
@@ -251,7 +251,7 @@ function BeforeAfter() {
             <ul className="space-y-1">
               {BEFORE_AFTER.after.bullets.map((b, i) => (
                 <li key={i} className="flex gap-2 text-sm text-gray-700">
-                  <span className="mt-0.5 text-brand">•</span>
+                  <span className="mt-0.5 text-brand">â¢</span>
                   {b}
                 </li>
               ))}
@@ -265,9 +265,9 @@ function BeforeAfter() {
 
 function SocialProof() {
   const stats = [
-    { value: '10s', label: 'Tempo médio de geração' },
+    { value: '10s', label: 'Tempo mÃ©dio de geraÃ§Ã£o' },
     { value: '4', label: 'Campos gerados por produto' },
-    { value: '100%', label: 'Conteúdo original' },
+    { value: '100%', label: 'ConteÃºdo original' },
   ];
 
   return (
@@ -283,26 +283,26 @@ function SocialProof() {
           ))}
         </div>
 
-        {/* Depoimentos — aguardando usuários reais */}
+        {/* Depoimentos â aguardando usuÃ¡rios reais */}
         <h2 className="mb-8 text-center text-2xl font-bold text-gray-900">
           O que dizem os lojistas
         </h2>
         <div className="grid gap-5 sm:grid-cols-3">
           {[
             {
-              text: '"Reduzi o tempo de cadastro de produto de 20 minutos para menos de 2. Impacto direto na operação."',
+              text: '"Reduzi o tempo de cadastro de produto de 20 minutos para menos de 2. Impacto direto na operaÃ§Ã£o."',
               name: 'Mariana S.',
-              role: 'Loja de moda — Shopee',
+              role: 'Loja de moda â Shopee',
             },
             {
-              text: '"Os bullets ficam muito melhores do que o que eu escrevia. Minhas conversões no ML melhoraram."',
+              text: '"Os bullets ficam muito melhores do que o que eu escrevia. Minhas conversÃµes no ML melhoraram."',
               name: 'Ricardo A.',
-              role: 'Eletrônicos — Mercado Livre',
+              role: 'EletrÃ´nicos â Mercado Livre',
             },
             {
-              text: '"Uso para todo o catálogo da agência. O plano Business pagou em 1 semana de trabalho economizado."',
+              text: '"Uso para todo o catÃ¡logo da agÃªncia. O plano Business pagou em 1 semana de trabalho economizado."',
               name: 'Fernanda L.',
-              role: 'Agência de e-commerce',
+              role: 'AgÃªncia de e-commerce',
             },
           ].map((t) => (
             <div key={t.name} className="rounded-2xl border border-gray-200 bg-white p-5">
@@ -322,19 +322,19 @@ function SocialProof() {
 function WhyNotChatGPT() {
   const items = [
     {
-      icon: '⚡',
+      icon: 'â¡',
       title: 'Campos estruturados, prontos para colar',
-      desc: 'Título, descrição curta, longa e bullets gerados separadamente — sem montar prompt, sem formatar manualmente.',
+      desc: 'TÃ­tulo, descriÃ§Ã£o curta, longa e bullets gerados separadamente â sem montar prompt, sem formatar manualmente.',
     },
     {
-      icon: '🛒',
+      icon: 'ð',
       title: 'Otimizado para Mercado Livre e Shopee',
-      desc: 'Não é texto genérico. O conteúdo é formatado para os padrões dos principais marketplaces brasileiros.',
+      desc: 'NÃ£o Ã© texto genÃ©rico. O conteÃºdo Ã© formatado para os padrÃµes dos principais marketplaces brasileiros.',
     },
     {
-      icon: '📂',
-      title: 'Histórico completo de produtos',
-      desc: 'Acesse qualquer descrição gerada anteriormente, reutilize com 1 clique e mantenha consistência no catálogo.',
+      icon: 'ð',
+      title: 'HistÃ³rico completo de produtos',
+      desc: 'Acesse qualquer descriÃ§Ã£o gerada anteriormente, reutilize com 1 clique e mantenha consistÃªncia no catÃ¡logo.',
     },
   ];
 
@@ -345,9 +345,9 @@ function WhyNotChatGPT() {
           <span className="mb-3 inline-block rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs font-semibold text-gray-500">
             Comparativo
           </span>
-          <h2 className="text-3xl font-bold text-gray-900">Por que não só o ChatGPT?</h2>
+          <h2 className="text-3xl font-bold text-gray-900">Por que nÃ£o sÃ³ o ChatGPT?</h2>
           <p className="mt-3 text-gray-600">
-            O ChatGPT é ótimo. Mas para produto de e-commerce, contexto importa.
+            O ChatGPT Ã© Ã³timo. Mas para produto de e-commerce, contexto importa.
           </p>
         </div>
         <div className="grid gap-6 sm:grid-cols-3">
@@ -368,9 +368,9 @@ function Pricing() {
   return (
     <section id="planos" className="bg-white px-4 py-14">
       <div className="mx-auto max-w-5xl">
-        <h2 className="mb-4 text-center text-3xl font-bold text-gray-900">Planos e preços</h2>
+        <h2 className="mb-4 text-center text-3xl font-bold text-gray-900">Planos e preÃ§os</h2>
         <p className="mb-12 text-center text-gray-600">
-          Comece grátis. Faça upgrade quando precisar de mais.
+          Comece grÃ¡tis. FaÃ§a upgrade quando precisar de mais.
         </p>
         <div className="grid gap-6 sm:grid-cols-3">
           {PLANS.map((plan) => (
@@ -441,32 +441,32 @@ function Pricing() {
   );
 }
 
-// ─── FAQ ────────────────────────────────────────────────────────────────────
+// âââ FAQ ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 const FAQS = [
   {
     q: 'A IA copia textos de outros lugares?',
-    a: 'Não. Cada descrição é gerada do zero com base nas informações que você fornece. O conteúdo é original e exclusivo para o seu produto.',
+    a: 'NÃ£o. Cada descriÃ§Ã£o Ã© gerada do zero com base nas informaÃ§Ãµes que vocÃª fornece. O conteÃºdo Ã© original e exclusivo para o seu produto.',
   },
   {
     q: 'Funciona para Mercado Livre, Shopee e outras plataformas?',
-    a: 'Sim. O conteúdo gerado — título, descrição curta, longa e bullets — é compatível com qualquer marketplace ou loja virtual. Basta copiar e colar.',
+    a: 'Sim. O conteÃºdo gerado â tÃ­tulo, descriÃ§Ã£o curta, longa e bullets â Ã© compatÃ­vel com qualquer marketplace ou loja virtual. Basta copiar e colar.',
   },
   {
     q: 'Posso cancelar quando quiser?',
-    a: 'Sim, sem multa e sem burocracia. Você cancela pela própria conta a qualquer momento e não é cobrado no mês seguinte.',
+    a: 'Sim, sem multa e sem burocracia. VocÃª cancela pela prÃ³pria conta a qualquer momento e nÃ£o Ã© cobrado no mÃªs seguinte.',
   },
   {
-    q: 'Por que não usar o ChatGPT direto?',
-    a: 'O Descrição AI gera campos estruturados e separados (título, curta, longa, bullets) prontos para colar — sem montar prompt. Também salva histórico de todos os produtos gerados.',
+    q: 'Por que nÃ£o usar o ChatGPT direto?',
+    a: 'O DescriÃ§Ã£o AI gera campos estruturados e separados (tÃ­tulo, curta, longa, bullets) prontos para colar â sem montar prompt. TambÃ©m salva histÃ³rico de todos os produtos gerados.',
   },
   {
-    q: 'Quantas gerações posso fazer por mês?',
-    a: 'Depende do plano: Grátis (10), Pro (300) ou Business (1.500). Cada geração produz título + descrição curta + descrição completa + até 5 bullets.',
+    q: 'Quantas geraÃ§Ãµes posso fazer por mÃªs?',
+    a: 'Depende do plano: GrÃ¡tis (10), Pro (300) ou Business (1.500). Cada geraÃ§Ã£o produz tÃ­tulo + descriÃ§Ã£o curta + descriÃ§Ã£o completa + atÃ© 5 bullets.',
   },
   {
     q: 'Meus dados de produto ficam armazenados?',
-    a: 'Sim, o histórico completo fica salvo na sua conta. Você pode acessar, reutilizar ou exportar qualquer geração anterior a qualquer momento.',
+    a: 'Sim, o histÃ³rico completo fica salvo na sua conta. VocÃª pode acessar, reutilizar ou exportar qualquer geraÃ§Ã£o anterior a qualquer momento.',
   },
 ] as const;
 
@@ -509,15 +509,15 @@ function CtaBanner() {
           Pronto para economizar horas toda semana?
         </h2>
         <p className="mb-8 text-gray-400">
-          Junte-se a centenas de lojistas que já automatizaram a criação de conteúdo com Descrição AI.
+          Junte-se a centenas de lojistas que jÃ¡ automatizaram a criaÃ§Ã£o de conteÃºdo com DescriÃ§Ã£o AI.
         </p>
         <Link
           href="/register"
           className="inline-block rounded-xl bg-brand px-10 py-4 text-base font-bold text-navy shadow-lg shadow-brand/30 hover:bg-brand-dark hover:text-white transition-colors"
         >
-          Começar grátis agora
+          ComeÃ§ar grÃ¡tis agora
         </Link>
-        <p className="mt-3 text-xs text-gray-500">Sem cartão de crédito. 10 gerações grátis por mês.</p>
+        <p className="mt-3 text-xs text-gray-500">Sem cartÃ£o de crÃ©dito. 10 geraÃ§Ãµes grÃ¡tis por mÃªs.</p>
       </div>
     </section>
   );
@@ -527,7 +527,7 @@ function Footer() {
   return (
     <footer className="border-t border-gray-100 bg-white px-4 py-8">
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 text-sm text-gray-500 sm:flex-row">
-        <span className="font-bold text-gray-700">Descrição AI</span>
+        <span className="font-bold text-gray-700">DescriÃ§Ã£o AI</span>
         <nav className="flex gap-5">
           <a href="#planos" className="hover:text-brand">Planos</a>
           <a href="#como-funciona" className="hover:text-brand">Como funciona</a>
@@ -536,7 +536,7 @@ function Footer() {
           <Link href="/privacidade" className="hover:text-brand">Privacidade</Link>
         </nav>
         <div className="flex flex-col items-center gap-1 sm:items-end">
-          <p>© {new Date().getFullYear()} Descrição AI. Todos os direitos reservados.</p>
+          <p>Â© {new Date().getFullYear()} DescriÃ§Ã£o AI. Todos os direitos reservados.</p>
           <a
             href="https://scantelburydevs.com.br"
             target="_blank"
@@ -544,7 +544,7 @@ function Footer() {
             className="inline-flex items-center gap-1.5 text-xs text-gray-400 hover:text-brand transition-colors"
           >
             Desenvolvido por
-            <ScantelburyLogoFull size="sm" className="[&_span]:!text-gray-600 [&_span_.text-brand]:!text-brand" />
+            <Logo size="md" />
           </a>
         </div>
       </div>
@@ -552,7 +552,7 @@ function Footer() {
   );
 }
 
-// ─── Page ────────────────────────────────────────────────────────────────────
+// âââ Page ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 export default function LandingPage() {
   return (
