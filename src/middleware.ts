@@ -34,6 +34,15 @@ export async function middleware(request: NextRequest) {
   } = await supabase.auth.getUser();
 
   const { pathname } = request.nextUrl;
+
+  // ── Admin routes — cookie-based auth ────────────────────────────────────────
+  if (pathname.startsWith('/admin') && pathname !== '/admin/login' && !pathname.startsWith('/api/admin/auth')) {
+    const adminToken = request.cookies.get('admin_token')?.value;
+    if (!adminToken || adminToken !== process.env.ADMIN_SECRET) {
+      return NextResponse.redirect(new URL('/admin/login', request.url));
+    }
+  }
+
   const isProtected = PROTECTED_PATHS.some((p) => pathname.startsWith(p));
 
   if (isProtected && !user) {
