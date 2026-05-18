@@ -538,7 +538,7 @@ function Footer() {
         <div className="flex flex-col items-center gap-1 sm:items-end">
           <p>© {new Date().getFullYear()} Descrição AI. Todos os direitos reservados.</p>
           <a
-            href="https://scantelburydevs.com.br"
+            href="https://www.scantelburydevs.com.br"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 text-xs text-gray-400 hover:text-brand transition-colors"
